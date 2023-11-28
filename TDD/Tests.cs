@@ -31,31 +31,21 @@ namespace TestDrivenDevelopment
             result.Should().Be(1);
         }
 
-        [Fact]
-        public void Should_return_the_sum_of_two_numbers_2()
+        [Theory]
+        [InlineData("1,2", 3)]
+        [InlineData("5,7", 12)]
+        public void Should_return_the_sum_of_two_numbers(string input, int expectedResult)
         {
-            // Arrage
+            // Arrange
             StringCalculator calculator = new StringCalculator();
 
             // Act
-            int result = calculator.Add("1,2");
+            int result = calculator.Add(input);
 
             // Assert
-            result.Should().Be(3);
+            result.Should().Be(expectedResult);
         }
 
-        [Fact]
-        public void Should_return_the_sum_of_two_numbers_1()
-        {
-            // Arrage
-            StringCalculator calculator = new StringCalculator();
-
-            // Act
-            int result = calculator.Add("5,7");
-
-            // Assert
-            result.Should().Be(12);
-        }
 
         [Fact]
         public void Shoulder_return_the_sum_of_unknown_amount_of_numbers()
@@ -84,7 +74,7 @@ namespace TestDrivenDevelopment
         }
 
         [Fact]
-        public void Shoulder_support_different_delimiters_1()
+        public void Shoulder_support_different_delimiters()
         {
             // Arrage
             StringCalculator calculator = new StringCalculator();
@@ -96,31 +86,22 @@ namespace TestDrivenDevelopment
             result.Should().Be(3);
         }
 
-        [Fact]
-        public void Shoulder_throw_exception_message_when_calling_with_negative_number()
+        [Theory]
+        [InlineData("1,-5,3", "Negatives not allowed: -5")]
+        [InlineData("1,-5,3, -6", "Negatives not allowed: -5, -6")]
+        [InlineData("1\n-5\n3\n -2", "Negatives not allowed: -5, -2")]
+        public void Shoulder_throw_exception_message_when_calling_with_negative_number(string input, string expectedErrorMessage)
         {
-            // Arrage
+            // Arrange
             StringCalculator calculator = new StringCalculator();
 
             // Act
-            Action act = () => calculator.Add("1,-5,3");
+            Action act = () => calculator.Add(input);
 
             // Assert
             act.Should().Throw<ArgumentException>()
-                .WithMessage("Negatives not allowed: -5");
+                .WithMessage(expectedErrorMessage);
         }
-        [Fact]
-        public void Shoulder_throw_exception_message_when_calling_with_negative_number_1()
-        {
-            // Arrage
-            StringCalculator calculator = new StringCalculator();
 
-            // Act
-            Action act = () => calculator.Add("1,-5,3, -6");
-
-            // Assert
-            act.Should().Throw<ArgumentException>()
-                .WithMessage("Negatives not allowed: -5, -6");
-        }
     }
 }
