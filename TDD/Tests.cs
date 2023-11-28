@@ -102,6 +102,5 @@ namespace TestDrivenDevelopment
             act.Should().Throw<ArgumentException>()
                 .WithMessage(expectedErrorMessage);
         }
-
     }
 }

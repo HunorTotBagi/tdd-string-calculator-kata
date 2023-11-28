@@ -1,17 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Text.RegularExpressions;
 
-namespace StringCalculatorKata
+class Program
 {
-    internal class Program
+    static void Main()
     {
-        
-
-        public static void Main(string[] args)
-        {
-        }
+       
     }
 }
