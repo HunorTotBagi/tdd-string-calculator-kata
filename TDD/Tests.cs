@@ -17,5 +17,18 @@ namespace TestDrivenDevelopment
             // Assert
             result.Should().Be(0);
         }
+
+        [Fact]
+        public void Should_return_the_exact_number()
+        {
+            // Arrage
+            StringCalculator calculator = new StringCalculator();
+
+            // Act
+            int result = calculator.Add("1");
+
+            // Assert
+            result.Should().Be(1);
+        }
     }
 }
