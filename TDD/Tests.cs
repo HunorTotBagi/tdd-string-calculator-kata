@@ -56,5 +56,18 @@ namespace TestDrivenDevelopment
             // Assert
             result.Should().Be(12);
         }
+
+        [Fact]
+        public void Shoulder_return_the_sum_of_unknown_amount_of_numbers()
+        {
+            // Arrage
+            StringCalculator calculator = new StringCalculator();
+
+            // Act
+            int result = calculator.Add("2,4,6,7,8,9,4,2");
+
+            // Assert
+            result.Should().Be(42);
+        }
     }
 }
