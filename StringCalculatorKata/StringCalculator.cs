@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text.RegularExpressions;
 
 namespace StringCalculatorKata
 {
@@ -11,7 +10,16 @@ namespace StringCalculatorKata
             if (string.IsNullOrEmpty(userInput))
                 return 0;
 
-            var holder = ExtractNumbers(userInput);
+            List<char> delimiters = new List<char> {',', '\n'};
+
+            char firstCharacter = userInput[0];
+            if (firstCharacter == ';')
+            {
+                //delimiters.Add(firstCharacter);
+                delimiters.Insert(0, firstCharacter);
+            }
+
+            string[] holder = userInput.Split(delimiters.ToArray(), StringSplitOptions.None);
 
             int result = 0;
             List<int> negatives = new List<int>();
@@ -35,24 +43,6 @@ namespace StringCalculatorKata
             }
 
             return result;
-        }
-
-        static List<string> ExtractNumbers(string input)
-        {
-            List<string> numbers = new List<string>();
-
-            string pattern = @"-?\d+\.?\d*";
-
-            Regex regex = new Regex(pattern);
-
-            MatchCollection matches = regex.Matches(input);
-
-            foreach (Match match in matches)
-            {
-                numbers.Add(match.Value);
-            }
-
-            return numbers;
         }
     }
 }
