@@ -5,9 +5,17 @@
         public int Add(string userInput)
         {
             if (string.IsNullOrEmpty(userInput))
-                return 0;
+                    return 0;
 
-            return int.Parse(userInput);
+            string[] holder = userInput.Split(',');
+
+            int result = 0;
+            foreach (string number in holder)
+            {
+                result += int.Parse(number);
+            }
+
+            return result;
         }
     }
 }

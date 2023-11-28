@@ -30,5 +30,31 @@ namespace TestDrivenDevelopment
             // Assert
             result.Should().Be(1);
         }
+
+        [Fact]
+        public void Should_return_the_sum_of_two_numbers_2()
+        {
+            // Arrage
+            StringCalculator calculator = new StringCalculator();
+
+            // Act
+            int result = calculator.Add("1,2");
+
+            // Assert
+            result.Should().Be(3);
+        }
+
+        [Fact]
+        public void Should_return_the_sum_of_two_numbers_1()
+        {
+            // Arrage
+            StringCalculator calculator = new StringCalculator();
+
+            // Act
+            int result = calculator.Add("5,7");
+
+            // Assert
+            result.Should().Be(12);
+        }
     }
 }
