@@ -69,5 +69,58 @@ namespace TestDrivenDevelopment
             // Assert
             result.Should().Be(42);
         }
+
+        [Fact]
+        public void Shoulder_appect_new_line_as_delimiter()
+        {
+            // Arrage
+            StringCalculator calculator = new StringCalculator();
+
+            // Act
+            int result = calculator.Add("1\n2,3");
+
+            // Assert
+            result.Should().Be(6);
+        }
+
+        [Fact]
+        public void Shoulder_support_different_delimiters_1()
+        {
+            // Arrage
+            StringCalculator calculator = new StringCalculator();
+
+            // Act
+            int result = calculator.Add(";\n1;2");
+
+            // Assert
+            result.Should().Be(3);
+        }
+
+        [Fact]
+        public void Shoulder_throw_exception_message_when_calling_with_negative_number()
+        {
+            // Arrage
+            StringCalculator calculator = new StringCalculator();
+
+            // Act
+            Action act = () => calculator.Add("1,-5,3");
+
+            // Assert
+            act.Should().Throw<ArgumentException>()
+                .WithMessage("Negatives not allowed: -5");
+        }
+        [Fact]
+        public void Shoulder_throw_exception_message_when_calling_with_negative_number_1()
+        {
+            // Arrage
+            StringCalculator calculator = new StringCalculator();
+
+            // Act
+            Action act = () => calculator.Add("1,-5,3, -6");
+
+            // Assert
+            act.Should().Throw<ArgumentException>()
+                .WithMessage("Negatives not allowed: -5, -6");
+        }
     }
 }
