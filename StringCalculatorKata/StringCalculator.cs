@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace StringCalculatorKata
+﻿namespace StringCalculatorKata
 {
     public class StringCalculator
     {
@@ -10,16 +7,15 @@ namespace StringCalculatorKata
             if (string.IsNullOrEmpty(userInput))
                 return 0;
 
-            List<char> delimiters = new List<char> {',', '\n'};
+            List<char> delimiters = new List<char> { ',', '\n' };
 
             char firstCharacter = userInput[0];
-            if (firstCharacter == ';')
+            if (!char.IsDigit(userInput[0]))
             {
-                //delimiters.Add(firstCharacter);
-                delimiters.Insert(0, firstCharacter);
+                delimiters.Add(firstCharacter);
             }
 
-            string[] holder = userInput.Split(delimiters.ToArray(), StringSplitOptions.None);
+            string[] holder = userInput.Split(delimiters.ToArray(), StringSplitOptions.RemoveEmptyEntries);
 
             int result = 0;
             List<int> negatives = new List<int>();

@@ -73,17 +73,19 @@ namespace TestDrivenDevelopment
             result.Should().Be(6);
         }
 
-        [Fact]
-        public void Shoulder_support_different_delimiters()
+        [Theory]
+        [InlineData(";\n1;2", 3)]
+        [InlineData("&1&2,8", 11)]
+        public void Should_support_different_delimiters(string input, int expected)
         {
-            // Arrage
+            // Arrange
             StringCalculator calculator = new StringCalculator();
 
             // Act
-            int result = calculator.Add(";\n1;2");
+            int result = calculator.Add(input);
 
             // Assert
-            result.Should().Be(3);
+            result.Should().Be(expected);
         }
 
         [Theory]
