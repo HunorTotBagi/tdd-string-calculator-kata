@@ -7,27 +7,20 @@
             if (string.IsNullOrEmpty(userInput))
                 return 0;
 
-            List<char> delimiters = new List<char> { ',', '\n' };
+            List<char> delimiters = GetDelimiters(userInput);
 
-            char firstCharacter = userInput[0];
-            if (!char.IsDigit(userInput[0]))
-            {
-                delimiters.Add(firstCharacter);
-            }
-
-            string[] holder = userInput.Split(delimiters.ToArray(), StringSplitOptions.RemoveEmptyEntries);
+            string[] numberStrings = GetNumberStrings(userInput, delimiters);
 
             int result = 0;
             List<int> negatives = new List<int>();
 
-            foreach (string number in holder)
+            foreach (string number in numberStrings)
             {
+                // consider not calculating the result
                 int parsedNumber = int.Parse(number);
 
                 if (parsedNumber < 0)
-                {
                     negatives.Add(parsedNumber);
-                }
 
                 result += parsedNumber;
             }
@@ -39,6 +32,22 @@
             }
 
             return result;
+        }
+
+        public List<char> GetDelimiters(string numbers)
+        {
+            List<char> delimiters = new List<char> { ',', '\n' };
+            char firstCharacter = numbers[0];
+
+            if (!char.IsDigit(firstCharacter))
+                delimiters.Add(firstCharacter);
+
+            return delimiters;
+        }
+
+        private string[] GetNumberStrings(string numbers, List<char> delimiters)
+        {
+            return numbers.Split(delimiters.ToArray(), StringSplitOptions.RemoveEmptyEntries);
         }
     }
 }
