@@ -12,22 +12,21 @@
             string[] numberStrings = GetNumberStrings(userInput, delimiters);
 
             int result = 0;
-            List<int> negatives = new List<int>();
+            List<int> allNegativeNumbers = new List<int>();
 
             foreach (string number in numberStrings)
             {
-                // consider not calculating the result
                 int parsedNumber = int.Parse(number);
 
                 if (parsedNumber < 0)
-                    negatives.Add(parsedNumber);
+                    allNegativeNumbers.Add(parsedNumber);
 
                 result += parsedNumber;
             }
 
-            if (negatives.Count > 0)
+            if (allNegativeNumbers.Count > 0)
             {
-                string negativeNumbers = string.Join(", ", negatives);
+                string negativeNumbers = string.Join(", ", allNegativeNumbers);
                 throw new ArgumentException($"Negatives not allowed: {negativeNumbers}");
             }
 
@@ -36,12 +35,18 @@
 
         public List<char> GetDelimiters(string numbers)
         {
+            char firstCharacter = 'a';
             List<char> delimiters = new List<char> { ',', '\n' };
-            char firstCharacter = numbers[0];
+            for (int i = 0; i < numbers.Length; i++)
+            {
+                firstCharacter = numbers[i];
 
-            if (!char.IsDigit(firstCharacter))
-                delimiters.Add(firstCharacter);
+                if (!char.IsDigit(firstCharacter) && firstCharacter != '-')
+                {
+                    delimiters.Add(firstCharacter);
+                }
 
+            }
             return delimiters;
         }
 

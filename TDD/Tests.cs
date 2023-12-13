@@ -48,15 +48,14 @@ namespace TestDrivenDevelopment
             result.Should().Be(expectedResult);
         }
 
-
         [Fact]
         public void Shoulder_return_the_sum_of_unknown_amount_of_numbers()
         {
             // Act
-            int result = calculator.Add("2,4,6,7,8,9,4,2");
+            int result = calculator.Add("2,4,6,7,8,9,4,22");
 
             // Assert
-            result.Should().Be(42);
+            result.Should().Be(62);
         }
 
         [Fact]
@@ -72,6 +71,7 @@ namespace TestDrivenDevelopment
         [Theory]
         [InlineData(";\n1;2", 3)]
         [InlineData("&1&2,8", 11)]
+        [InlineData("//[*][&]\\n1*12&3", 16)]
         public void Should_support_different_delimiters(string input, int expected)
         {
             // Act
