@@ -22,8 +22,11 @@ namespace TestDrivenDevelopment.BowlingGameKata
             // Arrange
             RollMany(20, 0);
 
+            // Act
+            int result = g.Score();
+
             // Assert
-            g.Score().Should().Be(0);
+            result.Should().Be(0);
         }
 
         [Fact]
@@ -32,28 +35,55 @@ namespace TestDrivenDevelopment.BowlingGameKata
             // Arrange
             RollMany(20, 1);
 
+            // Act
+            int result = g.Score();
+
             // Assert
-            g.Score().Should().Be(20);
+            result.Should().Be(20);
         }
 
         [Fact]
         public void Test_one_spare()
         {
+            // Arrange
             RollSpare();
             g.Roll(3);
             RollMany(17, 0);
 
-            g.Score().Should().Be(16);
+            // Act
+            int result = g.Score();
+
+            // Assert
+            result.Should().Be(16);
         }
 
         [Fact]
         public void Test_one_strike()
         {
+            // Arrange
             RollStrike();
             g.Roll(3);
             g.Roll(4);
             RollMany(16, 0);
-            g.Score().Should().Be(24);
+
+            // Act
+            int result = g.Score();
+
+            // Assert
+            result.Should().Be(24);
+        }
+
+        [Fact]
+        public void Test_perfect_game()
+        {
+            // Arrange
+            RollMany(12, 10);
+
+            // Act
+            int result = g.Score();
+
+            // Assert
+            result.Should().Be(300);
         }
 
         private void RollStrike()
