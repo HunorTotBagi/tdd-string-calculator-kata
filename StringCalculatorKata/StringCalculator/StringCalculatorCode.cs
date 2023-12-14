@@ -1,6 +1,6 @@
-﻿namespace StringCalculatorKata
+﻿namespace StringCalculatorKata.StringCalcuator.StringCalculator
 {
-    public class StringCalculator
+    public class StringCalculatorCode
     {
         public int Add(string userInput)
         {

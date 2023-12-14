@@ -6,6 +6,7 @@
 
 using FluentAssertions;
 using StringCalculatorKata.HumanReadableTime;
+using Xunit;
 
 namespace TestDrivenDevelopment.HumanReadableTimeTest
 {

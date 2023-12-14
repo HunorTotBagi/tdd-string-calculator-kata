@@ -1,16 +1,17 @@
 using FluentAssertions;
-using StringCalculatorKata;
+using StringCalculatorKata.StringCalcuator.StringCalculator;
+using Xunit;
 
-namespace TestDrivenDevelopment
+namespace TestDrivenDevelopment.StringCalculator
 {
     public class Tests
     {
-        private static StringCalculator CreateCalculator()
+        private static StringCalculatorCode CreateCalculator()
         {
-            return new StringCalculator();
+            return new StringCalculatorCode();
         }
 
-        StringCalculator calculator = CreateCalculator();
+        StringCalculatorCode calculator = CreateCalculator();
 
         [Fact]
         public void Should_return_zero_when_empty_string_is_given()
