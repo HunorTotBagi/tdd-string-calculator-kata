@@ -39,12 +39,17 @@ namespace TestDrivenDevelopment.BowlingGameKata
         [Fact]
         public void Test_one_spare()
         {
-            g.Roll(5);
-            g.Roll(5); // spare
+            rollSpare();
             g.Roll(3);
             RollMany(17, 0);
 
             g.Score().Should().Be(16);
+        }
+
+        private void rollSpare()
+        {
+            g.Roll(5);
+            g.Roll(5);
         }
     }
 }
