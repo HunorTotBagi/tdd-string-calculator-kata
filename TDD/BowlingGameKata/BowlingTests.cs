@@ -19,10 +19,8 @@ namespace TestDrivenDevelopment.BowlingGameKata
         [Fact]
         public void Test_gutter_game()
         {
-            // Arrange
-            RollMany(20, 0);
-
             // Act
+            RollMany(20, 0);
             int result = g.Score();
 
             // Assert
@@ -32,10 +30,8 @@ namespace TestDrivenDevelopment.BowlingGameKata
         [Fact]
         public void Test_all_ones()
         {
-            // Arrange
-            RollMany(20, 1);
-
             // Act
+            RollMany(20, 1);
             int result = g.Score();
 
             // Assert
@@ -45,12 +41,10 @@ namespace TestDrivenDevelopment.BowlingGameKata
         [Fact]
         public void Test_one_spare()
         {
-            // Arrange
+            // Act
             RollSpare();
             g.Roll(3);
             RollMany(17, 0);
-
-            // Act
             int result = g.Score();
 
             // Assert
@@ -60,13 +54,11 @@ namespace TestDrivenDevelopment.BowlingGameKata
         [Fact]
         public void Test_one_strike()
         {
-            // Arrange
+            // Act
             RollStrike();
             g.Roll(3);
             g.Roll(4);
             RollMany(16, 0);
-
-            // Act
             int result = g.Score();
 
             // Assert
@@ -76,10 +68,8 @@ namespace TestDrivenDevelopment.BowlingGameKata
         [Fact]
         public void Test_perfect_game()
         {
-            // Arrange
-            RollMany(12, 10);
-
             // Act
+            RollMany(12, 10);
             int result = g.Score();
 
             // Assert
