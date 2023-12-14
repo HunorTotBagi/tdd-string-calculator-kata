@@ -8,14 +8,19 @@ namespace TestDrivenDevelopment.BowlingGameKata
     {
         Game g = new Game();
 
+        private void RollMany(int n, int pins)
+        {
+            for (int i = 0; i < n; i++)
+            {
+                g.Roll(pins);
+            }
+        }
+
         [Fact]
-        public void Should_return_zero_when_zero_poin()
+        public void Test_gutter_game()
         {
             // Arrange
-            for (int i = 0; i < 20; i++)
-            {
-                g.Roll(0);
-            }
+            RollMany(20, 0);
 
             // Act
             int result = g.Score();
@@ -25,13 +30,10 @@ namespace TestDrivenDevelopment.BowlingGameKata
         }
 
         [Fact]
-        public void Should1()
+        public void Test_all_ones()
         {
             // Arrange
-            for (int i = 0; i < 20; i++)
-            {
-                g.Roll(1);
-            }
+            RollMany(20, 1);
 
             // Act
             int result = g.Score();
@@ -39,6 +41,5 @@ namespace TestDrivenDevelopment.BowlingGameKata
             // Assert
             result.Should().Be(20);
         }
-
     }
 }
