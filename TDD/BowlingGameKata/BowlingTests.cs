@@ -22,11 +22,8 @@ namespace TestDrivenDevelopment.BowlingGameKata
             // Arrange
             RollMany(20, 0);
 
-            // Act
-            int result = g.Score();
-
             // Assert
-            result.Should().Be(0);
+            g.Score().Should().Be(0);
         }
 
         [Fact]
@@ -35,11 +32,19 @@ namespace TestDrivenDevelopment.BowlingGameKata
             // Arrange
             RollMany(20, 1);
 
-            // Act
-            int result = g.Score();
-
             // Assert
-            result.Should().Be(20);
+            g.Score().Should().Be(20);
+        }
+
+        [Fact]
+        public void Test_one_spare()
+        {
+            g.Roll(5);
+            g.Roll(5); // spare
+            g.Roll(3);
+            RollMany(17, 0);
+
+            g.Score().Should().Be(16);
         }
     }
 }
